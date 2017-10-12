@@ -3,11 +3,11 @@
 
 int gcd(int u, int v)
 {
-    if (u - v == 0)
+    if (u == v)
     {
         return u;
     }
-    else if (0 <= u - v)
+    else if (v < u)
     {
         gcd(u - v, v);
     }
@@ -17,8 +17,24 @@ int gcd(int u, int v)
     }
 }
 
+int lcm(int u, int v, int r, int s)
+{
+    if (r == s)
+    {
+        return r;
+    }
+    else if (r < s)
+    {
+        lcm(u, v, u + r, s);
+    }
+    else
+    {
+        lcm(u, v, r, v + s);
+    }
+}
+
 int main()
 {
-    printf("result: %u\n", gcd(6, 8));
+    printf("result: %d\n", lcm(6, 7, 6, 7));
 }
 
