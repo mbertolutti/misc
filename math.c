@@ -3,17 +3,17 @@
 
 int gcd(int u, int v)
 {
-    if (u == v)
+    if (v == 0)
     {
         return u;
     }
-    else if (v < u)
+    else if (u > v)
     {
-        gcd(u - v, v);
+        gcd(v, u % v);
     }
     else
     {
-        gcd(u, v - u);
+        gcd(u, v % u);
     }
 }
 
@@ -35,6 +35,6 @@ int lcm(int u, int v, int r, int s)
 
 int main()
 {
-    printf("result: %d\n", lcm(6, 7, 6, 7));
+    printf("result: %d\n", gcd(14, 21));
 }
 
