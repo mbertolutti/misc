@@ -20,25 +20,25 @@ void print_nodes(struct node *nodes)
     }
 }
 
-void insert_val(struct node **node, unsigned val)
+void insert_val(struct node **curr_node, unsigned val)
 {
     struct node *temp = NULL;
-    if (!(*node))
+    if (!(*curr_node))
     {
         temp = (struct node *)malloc(sizeof(struct node));
         temp->left = NULL;
         temp->right = NULL;
         temp->val = val;
-        *node = temp;
+        *curr_node = temp;
         return;
     }
-    if (val <= (*node)->val)
+    if (val <= (*curr_node)->val)
     {
-        insert_val(&(*node)->left, val);
+        insert_val(&(*curr_node)->left, val);
     }
     else
     {
-        insert_val(&(*node)->right, val);
+        insert_val(&(*curr_node)->right, val);
     }
 }
 
