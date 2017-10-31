@@ -10,26 +10,27 @@ struct node
 };
 
 //root, left, right
-void print_nodes(struct node *nodes)
+void print_nodes(struct node *nodes, size_t curr_height)
 {
+    ++curr_height;
     if (nodes)
     {
         printf("%u\n", nodes->val);
-        print_nodes(nodes->left);
-        print_nodes(nodes->right);
+        print_nodes(nodes->left, curr_height);
+        print_nodes(nodes->right, curr_height);
     }
 }
 
 void insert_val(struct node **curr_node, unsigned val)
 {
-    struct node *temp = NULL;
+    struct node *tmp = NULL;
     if (!(*curr_node))
     {
-        temp = (struct node *)malloc(sizeof(struct node));
-        temp->left = NULL;
-        temp->right = NULL;
-        temp->val = val;
-        *curr_node = temp;
+        tmp = (struct node *)malloc(sizeof(struct node));
+        tmp->left = NULL;
+        tmp->right = NULL;
+        tmp->val = val;
+        *curr_node = tmp;
         return;
     }
     if (val <= (*curr_node)->val)
@@ -58,10 +59,13 @@ int main()
     root = NULL;
     insert_val(&root, 5);
     insert_val(&root, 2);
+    insert_val(&root, 7);
+    insert_val(&root, 9);
+    insert_val(&root, 6);
     insert_val(&root, 4);
     insert_val(&root, 3);
     insert_val(&root, 1);
-    print_nodes(root);
+    print_nodes(root, 0);
     printf("OoO\n");
     printf("oOo\n");
 }
